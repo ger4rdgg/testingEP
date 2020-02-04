@@ -15,7 +15,7 @@ public class Sale {
     private Date date;
     private BigDecimal amount;
     private boolean isClosed;
-    private List<ProductSaleLine> lines = new ArrayList<ProductSaleLine>();
+    private List<ProductSaleLine> lines = new ArrayList<>();
 
     public Sale(int code) {
         saleCode = code;
@@ -25,15 +25,7 @@ public class Sale {
 
     }
 
-    public  class ProductSaleLine{
-        ProductID prodid;
-        BigDecimal parcialPrice;
 
-        public ProductSaleLine(ProductID prodid, BigDecimal parcialPrice) {
-            this.prodid = prodid;
-            this.parcialPrice = parcialPrice;
-        }
-    }
     public void addLine(ProductID prodID, BigDecimal price, PatientContr contr) throws SaleClosedException{
 
         if(isClosed())
