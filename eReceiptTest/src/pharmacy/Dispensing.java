@@ -26,7 +26,7 @@ public class Dispensing {
     public boolean dispensingEnabled() throws DispensingNotAviableException{
 
         Date date = new Date();
-        if(date.after(initDate))
+        if(date.after(initDate) && date.before(finalDate))
             return true;
         else
             throw new DispensingNotAviableException("Out of date");

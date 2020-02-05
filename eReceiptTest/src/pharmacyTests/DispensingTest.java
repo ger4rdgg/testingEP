@@ -4,6 +4,7 @@ import data.ProductID;
 import org.junit.Before;
 import org.junit.Test;
 import pharmacy.Dispensing;
+import pharmacy.DispensingNotAviableException;
 import pharmacy.MedicineDispensingLine;
 
 import java.util.Calendar;
@@ -25,7 +26,7 @@ public class DispensingTest {
     public void setUp(){
 
         dateInit = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTime();
-        dateInit = new GregorianCalendar(2022, Calendar.JANUARY, 1).getTime();
+        dateFin = new GregorianCalendar(2022, Calendar.JANUARY, 1).getTime();
         dispensing = new Dispensing((byte) 1, dateInit, dateFin);
 
         productID = new ProductID("upc1");
@@ -62,6 +63,18 @@ public class DispensingTest {
 
     }
 
+    @Test
+    public void outofDateTest(){
+        dateInit = new GregorianCalendar(2022, Calendar.JANUARY, 1).getTime();
+        dateFin = new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime();
+        dispensing = new Dispensing((byte) 1, dateInit, dateFin);
+
+        Throwable exception = assertThrows(DispensingNotAviableException.class, () -> {
+
+            dispensing.dispensingEnabled();
+        });
+
+    }
     @Test
     public void Completed(){
 

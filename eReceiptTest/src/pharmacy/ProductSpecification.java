@@ -10,10 +10,8 @@ public class ProductSpecification {
     private String description;
     private BigDecimal price;
 
-    public ProductSpecification(ProductID UPCcode, String description, BigDecimal price) {
+    public ProductSpecification(ProductID UPCcode) {
         this.UPCcode = UPCcode;
-        this.description = description;
-        this.price = price;
     }
 
     public ProductID getUPCcode() {
@@ -24,7 +22,7 @@ public class ProductSpecification {
         return description;
     }
 
-    public BigDecimal getPricce() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -36,7 +34,7 @@ public class ProductSpecification {
         this.description = description;
     }
 
-    public void setPricce(BigDecimal pricce) {
-        this.price = pricce;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
