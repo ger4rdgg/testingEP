@@ -1,10 +1,11 @@
-package pharmacy;
+package pharmacyTests;
 
 import data.PatientContr;
 import data.ProductID;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+import pharmacy.Sale;
+import pharmacy.SaleClosedException;
 
 import java.math.BigDecimal;
 

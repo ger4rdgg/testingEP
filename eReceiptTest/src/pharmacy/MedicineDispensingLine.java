@@ -14,4 +14,5 @@ public class MedicineDispensingLine{
     public void setAdquiredTrue() {
         this.adquired = true;
     }
+
 }

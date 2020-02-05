@@ -27,6 +27,8 @@ public class Dispensing {
     }
     public void setProductAsDispensed(ProductID prodID){
 
+        MedicineDispensingLine mdl = new MedicineDispensingLine(prodID);
+        mdl.setAdquiredTrue();
 
     }
 
