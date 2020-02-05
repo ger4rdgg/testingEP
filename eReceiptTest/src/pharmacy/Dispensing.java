@@ -7,27 +7,27 @@ import java.util.Date;
 public class Dispensing {
 
     private byte nOrder;
-    private Date date;
+    private Date initDate, finalDate;
     private boolean isCompleted;
 
-    public Dispensing(byte nOrder) {
+    public Dispensing(byte nOrder, Date initDate, Date finalDate) {
         this.nOrder = nOrder;
-        this.date = new Date();
+        this.initDate = initDate;
+        this.finalDate = finalDate;
         this.isCompleted = false;
     }
 
-    class MedicineDispensingLine{
+    public boolean dispensingEnabled() throws DispensingNotAviableException{
 
-        private ProductID prodid;
-        private boolean adquired = false;
+        Date date = new Date();
+        if(date.after(initDate))
+            return true;
+        else
+            throw new DispensingNotAviableException("Out of date");
+    }
+    public void setProductAsDispensed(ProductID prodID){
 
-        public MedicineDispensingLine(ProductID prodid) {
-            this.prodid = prodid;
-        }
 
-        public void setAdquiredTrue() {
-            this.adquired = true;
-        }
     }
 
     public void setCompleted(){
