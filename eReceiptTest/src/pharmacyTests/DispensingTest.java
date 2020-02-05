@@ -62,6 +62,16 @@ public class DispensingTest {
 
     }
 
+    @Test
+    public void Completed(){
+
+
+        assertFalse(dispensing.isCompleted());
+        dispensing.setCompleted();
+
+        assertTrue(dispensing.isCompleted());
+    }
+
 
 
 }

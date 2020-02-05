@@ -56,6 +56,10 @@ public class Dispensing {
         return null;
     }
 
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
     public void setCompleted(){
         this.isCompleted = true;
     }

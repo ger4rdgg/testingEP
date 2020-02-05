@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProductSaleLineTest {
 
 
-    private ProductSaleLine result;
+    private ProductSaleLine Expected;
     private PatientContr patientContr;
     private ProductID productID;
 
@@ -26,7 +26,7 @@ public class ProductSaleLineTest {
     public void setUp(){
 
         productID = new ProductID("validId");
-        result = new ProductSaleLine(productID, new BigDecimal(10));
+        Expected = new ProductSaleLine(productID, new BigDecimal(10));
 
         price= new BigDecimal(10);
 
@@ -38,8 +38,8 @@ public class ProductSaleLineTest {
     public void ProductSaleLineTest() throws SaleClosedException {
 
         sale.addLine(productID, price, patientContr);
-        ProductSaleLine expected = sale.getLines().get(0);
-        assertEquals(result, expected);
+        ProductSaleLine result = sale.getLines().get(0);
+        assertEquals(Expected, result);
 
     }
 
