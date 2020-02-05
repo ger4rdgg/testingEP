@@ -2,13 +2,14 @@ package pharmacy;
 
 import data.ProductID;
 
-import java.util.Date;
+import java.util.*;
 
 public class Dispensing {
 
     private byte nOrder;
     private Date initDate, finalDate;
     private boolean isCompleted;
+    private Set<MedicineDispensingLine> medicineDispensingLines = new HashSet<>();
 
     public Dispensing(byte nOrder, Date initDate, Date finalDate) {
         this.nOrder = nOrder;
@@ -16,6 +17,11 @@ public class Dispensing {
         this.finalDate = finalDate;
         this.isCompleted = false;
     }
+
+    public void addMedicine(MedicineDispensingLine medicine){
+        medicineDispensingLines.add(medicine);
+    }
+
 
     public boolean dispensingEnabled() throws DispensingNotAviableException{
 
@@ -27,9 +33,27 @@ public class Dispensing {
     }
     public void setProductAsDispensed(ProductID prodID){
 
-        MedicineDispensingLine mdl = new MedicineDispensingLine(prodID);
-        mdl.setAdquiredTrue();
+        for(Iterator<MedicineDispensingLine> it = medicineDispensingLines.iterator(); it.hasNext();){
 
+            MedicineDispensingLine mdl = it.next();
+            if(mdl.getProdid().equals(prodID)){
+                mdl.setAdquiredTrue();
+            }
+
+        }
+
+    }
+
+
+    public MedicineDispensingLine getMedicine(ProductID productID) {
+        for(Iterator<MedicineDispensingLine> it = medicineDispensingLines.iterator(); it.hasNext();){
+
+            MedicineDispensingLine mdl = it.next();
+            if(mdl.getProdid().equals(productID)){
+                return mdl;
+            }
+        }
+        return null;
     }
 
     public void setCompleted(){

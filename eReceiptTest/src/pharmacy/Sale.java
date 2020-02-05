@@ -17,6 +17,10 @@ public class Sale {
     private boolean isClosed;
     private List<ProductSaleLine> lines = new ArrayList<>();
 
+    public List<ProductSaleLine> getLines() {
+        return lines;
+    }
+
     public Sale(int code) {
         saleCode = code;
         date = new Date();
