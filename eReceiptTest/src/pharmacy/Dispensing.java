@@ -63,4 +63,21 @@ public class Dispensing {
     public void setCompleted(){
         this.isCompleted = true;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Dispensing)) return false;
+        Dispensing that = (Dispensing) o;
+        return nOrder == that.nOrder &&
+                isCompleted() == that.isCompleted() &&
+                Objects.equals(initDate, that.initDate) &&
+                Objects.equals(finalDate, that.finalDate) &&
+                Objects.equals(medicineDispensingLines, that.medicineDispensingLines);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nOrder, initDate, finalDate, isCompleted(), medicineDispensingLines);
+    }
 }

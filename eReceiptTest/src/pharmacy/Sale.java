@@ -4,10 +4,7 @@ import data.PatientContr;
 import data.ProductID;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Sale {
 
@@ -76,5 +73,20 @@ public class Sale {
         return this.isClosed;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sale)) return false;
+        Sale sale = (Sale) o;
+        return saleCode == sale.saleCode &&
+                isClosed() == sale.isClosed() &&
+                Objects.equals(date, sale.date) &&
+                Objects.equals(getAmount(), sale.getAmount()) &&
+                Objects.equals(getLines(), sale.getLines());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(saleCode, date, getAmount(), isClosed(), getLines());
+    }
 }

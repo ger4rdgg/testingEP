@@ -21,7 +21,7 @@ public class DispensingTerminal {
 
     private PatientContr patientContr;
 
-    public static int code = 0;
+    private int code = 0;
 
     public DispensingTerminal(NationalHealthService SNS, HealthCardReader healthCardReader) {
         this.SNS = SNS;
@@ -36,6 +36,18 @@ public class DispensingTerminal {
 
     }
 
+    public Dispensing getDispensing() {
+        return dispensing;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public PatientContr getPatientContr() {
+        return patientContr;
+    }
+
     public void initNewSale(){
 
         sale = new Sale(code);
@@ -45,6 +57,9 @@ public class DispensingTerminal {
 
     public void enterProduct(ProductID productID) throws SaleClosedException {
 
+        if(sale.isClosed())
+            throw new SaleClosedException("sale is closed");
+
         ProductSpecification product = new ProductSpecification(productID);
         product.setPrice(new BigDecimal(10));
         sale.addLine(productID, product.getPrice(), patientContr);
@@ -52,6 +67,8 @@ public class DispensingTerminal {
 
     public void finalizeSale() throws SaleClosedException {
 
+        if(sale.isClosed())
+            throw new SaleClosedException("sale is closed");
         sale.CalculateFinalAmount();
         sale.setClosed();
     }
@@ -60,7 +77,6 @@ public class DispensingTerminal {
 
         System.out.println("pago realizado");
     }
-
     public void realizePayment(){
 
         System.out.println("Pagado");

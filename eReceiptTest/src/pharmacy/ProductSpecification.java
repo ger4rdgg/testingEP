@@ -3,6 +3,7 @@ package pharmacy;
 import data.ProductID;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class ProductSpecification {
 
@@ -36,5 +37,20 @@ public class ProductSpecification {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductSpecification)) return false;
+        ProductSpecification that = (ProductSpecification) o;
+        return Objects.equals(getUPCcode(), that.getUPCcode()) &&
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getPrice(), that.getPrice());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUPCcode(), getDescription(), getPrice());
     }
 }
