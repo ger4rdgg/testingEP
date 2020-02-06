@@ -4,6 +4,7 @@ import data.PatientContr;
 import data.ProductID;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import pharmacy.Sale;
 import pharmacy.SaleClosedException;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SaleTest {
 
-    private Sale sale = new Sale(1);
+    private Sale sale;
 
     private ProductID prodID;
     private PatientContr contr;
@@ -21,6 +22,7 @@ public class SaleTest {
 
     @Before
     public void setUP(){
+        sale = new Sale(1);
 
         prodID = new ProductID("validID");
         contr = new PatientContr(new BigDecimal(50));

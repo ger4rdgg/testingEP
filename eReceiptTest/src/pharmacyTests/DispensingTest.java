@@ -3,6 +3,7 @@ package pharmacyTests;
 import data.ProductID;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import pharmacy.Dispensing;
 import pharmacy.DispensingNotAviableException;
 import pharmacy.MedicineDispensingLine;
@@ -40,6 +41,7 @@ public class DispensingTest {
     @Test
     public void getMedicineTest(){
 
+        dispensing.addMedicine(medicineDispensingLine);
         assertEquals(medicineDispensingLine, dispensing.getMedicine(productID));
 
     }
@@ -64,6 +66,12 @@ public class DispensingTest {
     }
 
     @Test
+    public void inDateTest() throws DispensingNotAviableException {
+
+        assertTrue(dispensing.dispensingEnabled());
+    }
+
+    @Test
     public void outofDateTest(){
         dateInit = new GregorianCalendar(2022, Calendar.JANUARY, 1).getTime();
         dateFin = new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime();
@@ -75,6 +83,7 @@ public class DispensingTest {
         });
 
     }
+
     @Test
     public void Completed(){
 
