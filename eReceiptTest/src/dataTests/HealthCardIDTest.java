@@ -1,5 +1,6 @@
-package data;
+package dataTests;
 
+import data.HealthCardID;
 import org.testng.annotations.Test;
 import org.junit.jupiter.api.BeforeEach;
 

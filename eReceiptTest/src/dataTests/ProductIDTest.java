@@ -1,5 +1,6 @@
-package data;
+package dataTests;
 
+import data.ProductID;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
